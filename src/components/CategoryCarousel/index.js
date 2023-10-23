@@ -42,12 +42,6 @@ export function CategoryCarousel() {
                 <Image
                   src={category.url}
                   alt={`foto da categoria ${category.name}`}
-                  onLoad={() =>
-                    console.log(`Imagem carregada: ${category.url}`)
-                  }
-                  onError={() =>
-                    console.error(`Erro ao carregar a imagem: ${category.url}`)
-                  }
                 />
               ) : (
                 <span>Imagem não disponível</span>
