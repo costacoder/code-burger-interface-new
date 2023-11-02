@@ -34,17 +34,23 @@ export function Header() {
           onClick={() => navigate('/produtos')}
           isActive={pathname.includes('produtos')}
         >
-          Ver Produtos
+          Ver produtos
         </PageLink>
       </ContainerLeft>
 
       <ContainerLRight>
-        <PageLink onClick={() => navigate('/carrinho')}>
-          <img src={Cart} alt="logo-carrinho" />
-        </PageLink>
-        <Line></Line>
         <PageLink>
-          <img src={Person} alt="logo-pessoa" />
+          <img
+            src={Cart}
+            alt="logo-carrinho"
+            onClick={() => navigate('/carrinho')}
+          />
+        </PageLink>
+
+        <Line />
+
+        <PageLink>
+          <img src={Person} alt="logo-usuario" />
         </PageLink>
 
         <ContainerText>
