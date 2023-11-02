@@ -1,23 +1,28 @@
 import React from 'react'
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 
-import { Home, Products, Register, Login, Cart } from '../containers'
+import paths from '../constants/paths'
+import { Home, Products, Register, Login, Cart, Admin } from '../containers'
 import PrivateRoute from './private-route'
 
 function MyRoutes() {
   return (
     <Router>
       <Routes>
-        <Route element={<Login />} path="/login" />
-        <Route element={<Register />} path="/cadastro" />
-        <Route element={<Home />} path="/">
-          <Route element={<PrivateRoute />} path="/" />
+        <Route Component={Login} path={paths.Login} />
+        <Route Component={Register} path={paths.Register} />
+
+        <Route element={<PrivateRoute />}>
+          <Route element={<Home />} path={paths.Home} exact />
+          <Route element={<Products />} path={paths.Products} exact />
+          <Route element={<Cart />} path={paths.Cart} exact />
         </Route>
-        <Route element={<Products />} path="/produtos">
-          <Route element={<PrivateRoute />} path="/produtos" />
-        </Route>
-        <Route element={<Cart />} path="/carrinho">
-          <Route element={<PrivateRoute />} path="/carrinho" />
+
+        <Route element={<PrivateRoute isAdmin />}>
+          <Route element={<Admin />} path={paths.ListOrders} exact />
+          <Route element={<Admin />} path={paths.ListProducts} exact />
+          <Route element={<Admin />} path={paths.NewProduct} exact />
+          <Route element={<Admin />} path={paths.EditProduct} exact />
         </Route>
       </Routes>
     </Router>

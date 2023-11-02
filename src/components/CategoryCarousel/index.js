@@ -1,5 +1,5 @@
-import Carousel from '@itseasy21/react-elastic-carousel'
 import React, { useEffect, useState } from 'react'
+import Carousel from 'react-elastic-carousel'
 
 import Category from '../../assets/category.png'
 import api from '../../services/api'
@@ -46,7 +46,9 @@ export function CategoryCarousel() {
               ) : (
                 <span>Imagem não disponível</span>
               )}
-              <Button>{category.name}</Button>
+              <Button to={'/produtos'} state={{ categoryId: category.id }}>
+                {category.name}
+              </Button>
             </ContainerItems>
           ))}
       </Carousel>

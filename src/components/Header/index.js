@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import Cart from '../../assets/cart.svg'
 import Person from '../../assets/person.svg'
+import { useUser } from '../../hooks/UserContext'
 import {
   Container,
   ContainerLRight,
@@ -14,14 +15,17 @@ import {
 } from './styles'
 
 export function Header() {
+  const { logout, userData } = useUser()
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
-  console.log('funcionou')
+  const logoutUser = () => {
+    logout()
+    navigate('/login')
+  }
 
   return (
     <Container>
-      <Header />
       <ContainerLeft>
         <PageLink onClick={() => navigate('/')} isActive={pathname === '/'}>
           Home
@@ -44,8 +48,8 @@ export function Header() {
         </PageLink>
 
         <ContainerText>
-          <p>Olá, @</p>
-          <PageLinkExit>Sair</PageLinkExit>
+          <p>Olá, {userData.name}</p>
+          <PageLinkExit onClick={logoutUser}>Sair</PageLinkExit>
         </ContainerText>
       </ContainerLRight>
     </Container>
