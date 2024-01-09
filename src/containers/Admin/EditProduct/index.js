@@ -22,10 +22,11 @@ function EditProduct() {
   const [fileName, setFileName] = useState(null)
   const [categories, SetCategories] = useState([])
   const navigate = useNavigate()
+  const location = useLocation()
 
   const {
     state: { product }
-  } = useLocation()
+  } = location
 
   const schema = Yup.object().shape({
     name: Yup.string().required('Digite o nome do produto'),

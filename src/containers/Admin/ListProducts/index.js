@@ -35,7 +35,7 @@ function ListProducts() {
   }
 
   function editProduct(product) {
-    navigate(paths.editProduct, { product })
+    navigate(paths.EditProduct, { state: { product } })
   }
 
   return (
@@ -55,7 +55,7 @@ function ListProducts() {
             {products &&
               products.map(product => (
                 <TableRow
-                  key={product.name}
+                  key={product.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
